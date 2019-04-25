@@ -19,18 +19,36 @@
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^0.82.5",
     "simpl-schema": "^1.5.5",
+    "twitter": "^1.7.1",
     "uniforms": "^1.31.0",
     "uniforms-semantic": "^1.31.0"
   },
   "devDependencies": {
+    "autoprefixer": "^9.5.1",
     "babel-eslint": "^8.2.6",
+    "chai": "^4.2.0",
     "eslint": "^5.13.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsx-a11y": "^6.2.1"
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "faker": "^4.1.0",
+    "postcss": "^6.0.23",
+    "postcss-easy-import": "^3.0.0",
+    "postcss-load-config": "^1.2.0"
   },
   "scripts": {
     "start": "meteor --no-release-check --settings ../config/settings.development.json",
     "lint": "eslint --quiet --ext .jsx --ext .js ./imports"
+  },
+  "postcss": {
+    "plugins": {
+      "postcss-easy-import": {},
+      "autoprefixer": {
+        "browsers": [
+          "last 2 versions"
+        ]
+      }
+    },
+    "excludedPackages": []
   }
 }

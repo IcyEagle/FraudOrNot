@@ -1,0 +1,33 @@
+{
+  "env": "dev",
+  "twitter": {
+    "consumer_key": "AYG7ajhSkQZCMTz9x5Zg76qzN",
+    "consumer_secret": "HOzAJFZcgJbtDgdstZfcAepGaKHRiGJWd9vtHXlWLSUr6norEG",
+    "access_token_key": "276882169-mLed3rf4uemj0CQz5mBwLLz16OhktZmqkQ7M4TKs",
+    "access_token_secret": "6ovc1oQtLmuD9zAiaB1PxjMteMRLrDntRdLJu6PHKmgTZ"
+  },
+  "defaultVotePower": 1,
+  "defaultUsers": [
+    { "name": "John McAfee", "twitterId": 1000001, "followersCount":  909236, "followings": [1000002, 1000003] },
+    { "name": "Justin Sun", "twitterId": 1000002, "followersCount":  1209236, "followings": [1000001] },
+    { "name": "CZ Binance", "twitterId": 1000003, "followersCount":  909236 },
+    { "name": "Tuur Demeester", "twitterId": 1000004, "followersCount":  909236 },
+    { "name": "Vitalik Non-giver of Ether", "twitterId": 1000005, "followersCount": 849432 },
+    { "name": "CoinDesk", "twitterId": 1000006, "followersCount": 789232 },
+    { "name": "Blockchain", "twitterId": 1000007, "followersCount": 744001 }
+  ],
+
+  "defaultQuestions": [
+    { "text": "Is the Earth round?", "trueCount": 340023, "falseCount": 8356 },
+    { "text": "Do dinosaurs still exist?", "trueCount": 4778, "falseCount": 3018992 }
+  ],
+
+  "defaultDecisions": [
+    { "text": "Is the Earth round?", "user": "John McAfee", "choice": true, "power": 908775 },
+    { "text": "Do dinosaurs still exist?", "user": "John McAfee", "choice": false, "power": 908822 },
+    { "text": "Do dinosaurs still exist?", "user": "Justin Sun", "choice": false, "power": 1209230 }
+  ],
+  "public": {
+    "applicationName": "Votermelon"
+  }
+}

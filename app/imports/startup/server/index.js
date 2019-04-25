@@ -1,2 +1,5 @@
-import './accounts.js';
-import './stuff.js';
+import './serviceConfiguration';
+import './loginAsUserForDev';
+import './accounts';
+import './questions';
+import './decisions';
