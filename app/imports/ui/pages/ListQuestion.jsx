@@ -8,14 +8,6 @@ import PropTypes from 'prop-types';
 
 class ListQuestion extends React.Component {
 
-  onDecision(questionId, choice) {
-    Meteor.call('vote', questionId, choice);
-  }
-
-  onCancel(questionId) {
-    Meteor.call('unvote', questionId);
-  }
-
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
@@ -46,7 +38,8 @@ ListQuestion.propTypes = {
 export default withTracker(() => {
   const subscriptions = [Meteor.subscribe('questions')];
   return {
-    questions: Questions.find({}).fetch(),
+    // any sorting criteria to stabilize results
+    questions: Questions.find({}, { sort: { _id: -1 } }).fetch(),
     ready: subscriptions.every(subscription => subscription.ready()),
   };
 })(ListQuestion);

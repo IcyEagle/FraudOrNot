@@ -5,27 +5,24 @@ import { Roles } from 'meteor/alanning:roles';
 
 /* eslint-disable no-console */
 
-function createUser(email, password, role) {
-  console.log(`  Creating user ${email}.`);
-  const userID = Accounts.createUser({
-    username: email,
-    email: email,
-    password: password,
+function createUser({ name, externalId, power, friends }) {
+  console.log(`  Creating user ${name}.`);
+  Accounts.createUser({
+    externalId,
+    username: name,
+    profile: { name, power, friends: friends || [] },
   });
-  if (role === 'admin') {
-    Roles.addUsersToRoles(userID, 'admin');
-  }
 }
 
 /** When running app for first time, pass a settings file to set up a default user account. */
-// if (Meteor.users.find().count() === 0) {
-//   if (Meteor.settings.defaultUsers) {
-//     console.log('Creating the default user(s)');
-//     Meteor.settings.defaultAccounts.map(({ email, password, role }) => createUser(email, password, role));
-//   } else {
-//     console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
-//   }
-// }
+if (Meteor.users.find().count() === 0) {
+  if (Meteor.settings.defaultUsers) {
+    console.log('Creating the default user(s)');
+    Meteor.settings.defaultUsers.forEach(createUser);
+  } else {
+    console.log('Cannot initialize the database!  Please invoke meteor with a settings file.');
+  }
+}
 
 Accounts.onCreateUser((options, user) => {
   // expect only registration via Twitter
@@ -36,7 +33,7 @@ Accounts.onCreateUser((options, user) => {
 
   return Object.assign({
     externalId,
-    profile: { name, avatarUrl, power },
+    profile: { name, avatarUrl, power, friends: [] },
     dataRequested: true,
   }, user);
 });

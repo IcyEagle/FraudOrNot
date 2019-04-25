@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import { withRouter, NavLink } from 'react-router-dom';
-import {Menu, Dropdown, Header, Image} from 'semantic-ui-react';
-import { Roles } from 'meteor/alanning:roles';
+import { Menu, Header, Image } from 'semantic-ui-react';
 import Icon from 'semantic-ui-react/dist/commonjs/elements/Icon';
 
 /** The NavBar appears at the top of every page. Rendered by the App Layout component. */
@@ -31,10 +30,12 @@ class NavBar extends React.Component {
           <Menu.Menu position="right">
           <Menu.Item>
               {this.props.currentUser === '' ? (
-                  <a href="#" onClick={this.onLoginClicked}>Login with <Icon name="twitter" size="large" color="blue" /></a>
+                  <a href="#" onClick={this.onLoginClicked}>
+                      Login with <Icon name="twitter" size="large" color="blue" />
+                  </a>
               ) : (
                 <span>
-                <Header as="h4" inverted color='white'>
+                <Header as="h4" inverted>
                     <Image src={this.props.avatar} avatar className="user-avatar" />
                     <Header.Content>
                         {this.props.currentUser}

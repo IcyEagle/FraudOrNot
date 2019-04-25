@@ -5,3 +5,7 @@
 .user-power {
     border-bottom: 1px dotted;
 }
+
+.change-decision-label {
+    font-size: 1rem !important;
+}

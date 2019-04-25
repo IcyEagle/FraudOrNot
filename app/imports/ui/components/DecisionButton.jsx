@@ -15,8 +15,8 @@ const FraudButtons = ({ onSubmit, negativeLabel, positiveLabel }) => (
 );
 
 FraudButtons.defaultProps = {
-    negativeLabel: 'Fraud',
-    positiveLabel: 'Legit',
+    negativeLabel: 'Vote for Fraud',
+    positiveLabel: 'Vote for Legit',
 };
 
 FraudButtons.propTypes = {

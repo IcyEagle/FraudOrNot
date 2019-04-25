@@ -1,27 +1,31 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import {Container, Header, Loader, Grid, Icon, Segment, Image} from 'semantic-ui-react';
+import { Container, Header, Loader, Grid, Icon, Segment, Image } from 'semantic-ui-react';
 import { Questions } from '/imports/api/question/question';
 import { Decisions } from '/imports/api/decision/decision';
 // import QuestionItem from '/imports/ui/components/QuestionItem';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
-import DecisionButton from '../components/DecisionButton';
+import DecisionWidget from '../components/DecisionWidget';
 
-class QuestionPage extends React.Component {
+  class QuestionPage extends React.Component {
 
   render() {
     return (this.props.ready) ? this.renderPage() : <Loader active>Getting data</Loader>;
   }
 
   renderPage() {
-    const { onVote } = this.props;
+    const { onSubmitVote, onChangeVote, decision } = this.props;
     const { _id: questionId, text, trueCount, falseCount } = this.props.question;
 
     return (
         <Container>
           <Header as='h3' block textAlign='center'>{text}</Header>
-          <DecisionButton onSubmit={onVote.bind(this, questionId)} />
+          <DecisionWidget
+              decision={decision}
+              onSubmit={onSubmitVote.bind(this, questionId)}
+              onChange={onChangeVote.bind(this, questionId)}
+          />
             <Segment.Group>
               <Segment>
                 <Grid columns={2} divided stackable textAlign='center'>
@@ -124,29 +128,6 @@ class QuestionPage extends React.Component {
                   </Grid>
                 </Segment>
               </Segment.Group>
-                {/*<Header>Others</Header>*/}
-              {/*<Grid columns={2} divided stackable textAlign='center'>*/}
-                {/*<Grid.Row>*/}
-                  {/*<Grid.Column>*/}
-                    {/*<Segment.Group piled>*/}
-                      {/*<Segment>Joe Young</Segment>*/}
-                      {/*<Segment>Bruth Benner</Segment>*/}
-                      {/*<Segment>Amily White</Segment>*/}
-                      {/*<Segment>Chris Sunders</Segment>*/}
-                      {/*<Segment>Ludovik Cheh</Segment>*/}
-                      {/*<Segment>Satoshi Nakamoto</Segment>*/}
-                    {/*</Segment.Group>*/}
-                  {/*</Grid.Column>*/}
-                  {/*<Grid.Column>*/}
-                    {/*<Segment.Group piled>*/}
-                      {/*<Segment>Ben Groth</Segment>*/}
-                      {/*<Segment>Alan Kooper</Segment>*/}
-                      {/*<Segment>Benjamin Franklin</Segment>*/}
-                      {/*<Segment>Adam Smith</Segment>*/}
-                    {/*</Segment.Group>*/}
-                  {/*</Grid.Column>*/}
-                {/*</Grid.Row>*/}
-              {/*</Grid>*/}
             </Segment.Group>
         </Container>
     );
@@ -155,18 +136,56 @@ class QuestionPage extends React.Component {
 
 QuestionPage.propTypes = {
   question: PropTypes.object, // in fact, required
-  // decisions: PropTypes.array.isRequired,
+  decision: PropTypes.object,
+  topPositiveDecisions: PropTypes.array.isRequired,
+  topNegativeDecisions: PropTypes.array.isRequired,
+  friendsPositiveDecisions: PropTypes.array,
+  friendsNegativeDecisions: PropTypes.array,
   ready: PropTypes.bool.isRequired,
-  onVote: PropTypes.func.isRequired,
+  onSubmitVote: PropTypes.func.isRequired,
+  onChangeVote: PropTypes.func.isRequired,
 };
 
 export default withTracker(({ match: { params: { id } } }) => {
-  const subscriptions = [Meteor.subscribe('question.id', id)];
+  const userSubscriptions = Meteor.user() ? [
+    Meteor.subscribe('decisions.self', id),
+    Meteor.subscribe('decisions.friendsTopPositive', id),
+    Meteor.subscribe('decisions.friendsTopNegative', id),
+  ] : [];
 
-  return {
-    question: Questions.findOne(id),
-    // decisions: Decisions.find({}).fetch(),
-    ready: subscriptions.every(subscription => subscription.ready()),
-    onVote: Meteor.call.bind(this, 'vote'),
+  const subscriptions = [
+    Meteor.subscribe('question.id', id),
+    Meteor.subscribe('decisions.topNegative', id),
+    Meteor.subscribe('decisions.topPositive', id),
+  ].concat(userSubscriptions);
+
+  const userRelatedData = Meteor.user() ? {
+    decision: Decisions.findOne({ questionId: id, userId: Meteor.user()._id }),
+    topPositiveDecisions: Decisions.find(
+        { userId: { $nin: Meteor.user().profile.friends }, choice: true },
+        { sort: { power: -1 } },
+    ).fetch(),
+    topNegativeDecisions: Decisions.find(
+        { userId: { $nin: Meteor.user().profile.friends }, choice: false },
+        { sort: { power: -1 } },
+    ).fetch(),
+    friendsPositiveDecisions: Decisions.find(
+        { userId: { $in: Meteor.user().profile.friends }, choice: true },
+        { sort: { power: -1 } },
+    ).fetch(),
+    friendsNegativeDecisions: Decisions.find(
+        { userId: { $in: Meteor.user().profile.friends }, choice: false },
+        { sort: { power: -1 } },
+    ).fetch(),
+  } : {
+    topPositiveDecisions: Decisions.find({ choice: true }, { sort: { power: -1 } }).fetch(),
+    topNegativeDecisions: Decisions.find({ choice: false }, { sort: { power: -1 } }).fetch(),
   };
+
+  return Object.assign({
+    question: Questions.findOne(id),
+    ready: subscriptions.every(subscription => subscription.ready()),
+    onSubmitVote: Meteor.call.bind(this, 'vote'),
+    onChangeVote: Meteor.call.bind(this, 'vote.change'),
+  }, userRelatedData);
 })(QuestionPage);
