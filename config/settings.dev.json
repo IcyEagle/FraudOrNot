@@ -1,10 +1,10 @@
 {
   "env": "dev",
   "twitter": {
-    "consumer_key": "AYG7ajhSkQZCMTz9x5Zg76qzN",
-    "consumer_secret": "HOzAJFZcgJbtDgdstZfcAepGaKHRiGJWd9vtHXlWLSUr6norEG",
-    "access_token_key": "276882169-mLed3rf4uemj0CQz5mBwLLz16OhktZmqkQ7M4TKs",
-    "access_token_secret": "6ovc1oQtLmuD9zAiaB1PxjMteMRLrDntRdLJu6PHKmgTZ"
+    "consumer_key": "override it in .secret.json",
+    "consumer_secret": "override it in .secret.json",
+    "access_token_key": "override it in .secret.json",
+    "access_token_secret": "override it in .secret.json"
   },
   "defaultVotePower": 1,
   "defaultUsers": [
@@ -28,6 +28,6 @@
     { "text": "Do dinosaurs still exist?", "user": "Justin Sun", "choice": false, "power": 1209230 }
   ],
   "public": {
-    "applicationName": "Votermelon"
+    "applicationName": "VoterMelon"
   }
 }

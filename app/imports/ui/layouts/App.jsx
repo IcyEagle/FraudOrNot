@@ -19,7 +19,6 @@ class App extends React.Component {
               <Route path="/show/:id" component={QuestionPage}/>
               <Route component={NotFound}/>
             </Switch>
-            <Footer/>
           </div>
         </Router>
     );

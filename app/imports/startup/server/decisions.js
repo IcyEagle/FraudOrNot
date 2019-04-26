@@ -10,7 +10,7 @@ import { Questions } from '../../api/question/question';
 function addDecision({ text, email, choice, power }) {
   const question = Questions.findOne({ text });
   const user = Users.findOne({ 'emails.address': email });
-  console.log(`  Adding: question: ${text}, user: ${email}, choice: ${choice}`);
+  console.log(`  Adding: decision: ${text}, user: ${email}, choice: ${choice}`);
   Decisions.insert({ questionId: question._id, userId: user._id, choice, power });
 }
 

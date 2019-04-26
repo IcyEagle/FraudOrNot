@@ -2,5 +2,9 @@
 .idea
 .DS_Store
 node_modules
-settings.production.json
-settings.local.json
+
+# hide secret configuration files
+config/*.secret.json
+
+# for local development
+docker-compose.yml
