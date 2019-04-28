@@ -28,6 +28,8 @@
     { "text": "Do dinosaurs still exist?", "user": "Justin Sun", "choice": false, "power": 1209230 }
   ],
   "public": {
-    "applicationName": "VoterMelon"
+    "applicationName": "VoterMelon",
+    "githubUrl": "https://github.com/IcyEagle/VoterMelon",
+    "twitterUrl": "https://twitter.com/IcyEagle"
   }
 }

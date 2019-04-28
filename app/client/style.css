@@ -9,3 +9,56 @@
 .change-decision-label {
     font-size: 1rem !important;
 }
+
+.segment.masthead {
+    min-height: 700px;
+}
+
+.masthead h1.ui.header.extra-margin {
+    margin-top: 3em;
+}
+
+.masthead h1.ui.header {
+    margin-top: 0.2em;
+    margin-bottom: 0.2em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.voter-span {
+    color: rgb(246, 83, 40)
+}
+
+.melon-span {
+    color: rgb(140, 190, 68)
+}
+
+.twitter-span {
+    color: rgb(40, 135, 205)
+}
+
+.ui.header.logo-span {
+    margin-top: 2em;
+    margin-bottom: 1em;
+    font-family: monospace;
+}
+
+.ui.vertical.stripe {
+    padding: 5em 0;
+}
+
+.ui.vertical.stripe .row {
+    padding: 3em 0;
+}
+
+.ui.vertical.stripe h3 {
+    font-size: 2em;
+}
+
+.ui.vertical.stripe p {
+    font-size: 1.33em;
+}
+
+.ui.vertical.stripe p + h3 {
+    margin-top: 3em;
+}

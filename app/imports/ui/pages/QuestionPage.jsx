@@ -7,6 +7,7 @@ import { Decisions } from '/imports/api/decision/decision';
 import { withTracker } from 'meteor/react-meteor-data';
 import PropTypes from 'prop-types';
 import DecisionWidget from '../components/DecisionWidget';
+import NavBar from "../components/NavBar";
 
   class QuestionPage extends React.Component {
 
@@ -20,6 +21,7 @@ import DecisionWidget from '../components/DecisionWidget';
 
     return (
         <Container>
+          <NavBar/>
           <Header as='h3' block textAlign='center'>{text}</Header>
           <DecisionWidget
               decision={decision}

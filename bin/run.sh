@@ -1,17 +1,14 @@
 #!/bin/bash
 
 set -e
-
 DIRNAME=`dirname "$0"`
 cd ${DIRNAME}
 
+source ./variables.sh
+
 ENV=$1
-CONFIG_FILE=/tmp/settings.${ENV}.final.json
-
-./merge_settings.sh ${ENV}
-
-METEOR_DIR=../app
-cd ${METEOR_DIR}
+${BIN_DIR}/merge_settings.sh ${ENV}
 
 printf "Launching application for \e[1m$ENV\e[m environment...\n"
-meteor --settings ${CONFIG_FILE}
+cd ${APP_DIR}
+meteor --settings ${FINAL_CONFIG_FILE}

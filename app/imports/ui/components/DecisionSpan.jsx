@@ -14,5 +14,4 @@ Span.propTypes = {
     onCancel: PropTypes.func.isRequired,
 };
 
-
 export default Span;
