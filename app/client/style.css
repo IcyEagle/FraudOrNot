@@ -14,8 +14,20 @@
     min-height: 700px;
 }
 
+@media screen and (max-width: 700px) {
+    .segment.masthead {
+        min-height: 550px;
+    }
+}
+
 .masthead h1.ui.header.extra-margin {
     margin-top: 3em;
+}
+
+@media screen and (max-width: 700px) {
+    .masthead h1.ui.header.extra-margin {
+        margin-top: 1.5em;
+    }
 }
 
 .masthead h1.ui.header {
@@ -47,6 +59,12 @@
     padding: 5em 0;
 }
 
+@media screen and (max-width: 700px) {
+    .ui.vertical.stripe {
+        padding: 2em 0;
+    }
+}
+
 .ui.vertical.stripe .row {
     padding: 3em 0;
 }
@@ -61,4 +79,26 @@
 
 .ui.vertical.stripe p + h3 {
     margin-top: 3em;
+}
+
+.ui.list.alice-list {
+    padding-top: 1em;
+    padding-left: 1.5em;
+}
+
+.ui.list.alice-list .icon {
+    min-width: 27px;
+}
+
+.sign-in-row {
+    text-align: center;
+    padding-top: 2em;
+}
+
+.ui.card.user-card .ui.avatar.image {
+    margin-bottom: 0.5em;
+}
+
+.ui.grid.influencers-list {
+    margin-top: 2em;
 }
