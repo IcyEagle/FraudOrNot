@@ -1,18 +1,18 @@
 import React from 'react';
+import { Container, Segment } from 'semantic-ui-react';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
     const divStyle = { paddingTop: '15px' };
     return (
-        <footer>
-          <div style={divStyle} className="ui center aligned container">
-            <hr />
-              Department of Information and Computer Sciences <br />
-              University of Hawaii<br />
-              Honolulu, HI 96822
-          </div>
-        </footer>
+        <Segment inverted vertical>
+          <Container textAlign='center'>
+              <p>© Copyright 2019 | VaterMelon. All right reserved.</p>
+              <p>Powered by <a target='_blank' rel='noopener noreferrer'
+                               href='https://github.com/IcyEagle/'>Aleksandr Kuzmenko</a></p>
+          </Container>
+        </Segment>
     );
   }
 }

@@ -3,6 +3,8 @@ import { Meteor } from 'meteor/meteor';
 import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button, Card } from 'semantic-ui-react';
 import ForkRibbon from '../components/ForkRibbon';
 import UserCard from '../components/UserCard';
+import QuestionCard from "../components/QuestionCard";
+import Footer from "../components/Footer";
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -142,13 +144,41 @@ class Landing extends React.Component {
                                       power={7651132}
                                   />
                               </Grid.Column>
+                              {/*<Grid.Column>*/}
+                                  {/*<UserCard*/}
+                                      {/*name='CryptoPanic HQ'*/}
+                                      {/*username='CryptoPanicHQ'*/}
+                                      {/*bio='This is official http://CryptoPanic.com  announcements channel. Follow @CryptoPanicCom for trending news!'*/}
+                                      {/*avatarUrl='https://pbs.twimg.com/profile_images/1033478926490914818/t02Q6ozB_400x400.jpg'*/}
+                                      {/*power={876552}*/}
+                                  {/*/>*/}
+                              {/*</Grid.Column>*/}
+                          </Grid>
+                      </Grid.Column>
+                  </Grid.Row>
+                  <Grid.Row>
+                      <Grid.Column width={16}>
+                          <Header as='h3'>Explore</Header>
+                          <Grid stackable columns={3} className='influencers-list'>
                               <Grid.Column>
-                                  <UserCard
-                                      name='CryptoPanic HQ'
-                                      username='CryptoPanicHQ'
-                                      bio='This is official http://CryptoPanic.com  announcements channel. Follow @CryptoPanicCom for trending news!'
-                                      avatarUrl='https://pbs.twimg.com/profile_images/1033478926490914818/t02Q6ozB_400x400.jpg'
-                                      power={876552}
+                                  <QuestionCard
+                                      text='Is Craig Wright fraud or not?'
+                                      imageUrl='https://cdn-images-1.medium.com/max/1200/1*IRtsW33ODZL42DW6pyqY4Q.jpeg'
+                                      voted={523}
+                                  />
+                              </Grid.Column>
+                              <Grid.Column>
+                                  <QuestionCard
+                                      text='Will BTC hit 7000 in June 2019?'
+                                      imageUrl='https://cryptovest.com/images/thumbs/5bec50b172d4d0000d57040b_700xauto.png'
+                                      voted={115}
+                                  />
+                              </Grid.Column>
+                              <Grid.Column>
+                                  <QuestionCard
+                                      text='Do you trust John McAfee your funds?'
+                                      imageUrl='https://pixel.nymag.com/imgs/fashion/daily/2018/06/22/22-john-mcafee.w700.h700.jpg'
+                                      voted={404}
                                   />
                               </Grid.Column>
                           </Grid>
@@ -156,86 +186,10 @@ class Landing extends React.Component {
                   </Grid.Row>
               </Grid>
           </Segment>
+          <Footer />
           <ForkRibbon url={this.githubUrl}/>
       </div>;
   }
-
-    // render() {
-  //   return <Container>
-  //       <Grid columns={2} verticalAlign='middle' textAlign='center' divided >
-  //           <Grid.Row>
-  //               <Grid.Column>
-  //                   <Image src='/shield.png' size='small' centered/>
-  //                   <Header size='huge'>Protect newbies</Header>
-  //               </Grid.Column>
-  //               <Grid.Column>
-  //                   <Image src='/followers.jpg' size='small' centered/>
-  //                   <Header size='huge'>Gain followers</Header>
-  //               </Grid.Column>
-  //           </Grid.Row>
-  //       </Grid>
-  //       <Header as='h1' textAlign='center'>
-  //           <a href='#' onClick={this.onSignUp}>Sign up with <Icon name='twitter' size='large' color="blue" /></a>
-  //       </Header>
-  //       <Segment>
-  //           <Header as='h2'>
-  //               How will I protect the newbies?
-  //               <Header.Subheader>You can vote for projects: are they scams or not?</Header.Subheader>
-  //           </Header>
-  //       </Segment>
-  //       <Segment>
-  //           <Header as='h2'>
-  //               How will I gain followers?
-  //               <Header.Subheader>Noobs need to follow you to see your vote.</Header.Subheader>
-  //           </Header>
-  //       </Segment>
-  //       <Segment>
-  //           <Header as='h2'>
-  //               How it works?
-  //               <Header.Subheader>
-  //                   <List>
-  //                       <List.Item>
-  //                           <List.Icon name='bitcoin' />
-  //                           <List.Content>Alice is new to crypto.</List.Content>
-  //                       </List.Item>
-  //                       <List.Item>
-  //                           <List.Icon name='question' />
-  //                           <List.Content>Alice wants to know: <a href='#'>Is Craig Wright fraud or not?</a></List.Content>
-  //                       </List.Item>
-  //                       <List.Item>
-  //                           <List.Icon name='check' />
-  //                           <List.Content>
-  //                               Alice checks the votes of her favourite Twitter personalities:
-  //                               <a href='#'>@notsofast</a>,
-  //                               <a href='#'>@anambroid</a>
-  //                               & others.
-  //                           </List.Content>
-  //                       </List.Item>
-  //                       <List.Item>
-  //                           <List.Icon name='twitter square' />
-  //                           <List.Content>Alice <b>follows more people</b> to see their votes.</List.Content>
-  //                       </List.Item>
-  //                       <List.Item>
-  //                           <List.Icon name='lab' />
-  //                           <List.Content>Alice makes up her mind.</List.Content>
-  //                       </List.Item>
-  //                       <List.Item>
-  //                           <List.Icon name='thumbs up' />
-  //                           <List.Content>Alice is happy</List.Content>
-  //                       </List.Item>
-  //                   </List>
-  //               </Header.Subheader>
-  //           </Header>
-  //       </Segment>
-  //       <Segment>
-  //           <Header>Who has already signed up?</Header>
-  //       </Segment>
-  //       <Segment>
-  //           <Header>Explore</Header>
-  //       </Segment>
-  //   </Container>;
-  // }
-  //
   onSignUp() {
       Meteor.loginWithTwitter();
   }
