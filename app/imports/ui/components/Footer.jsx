@@ -4,7 +4,6 @@ import { Container, Segment } from 'semantic-ui-react';
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
 class Footer extends React.Component {
   render() {
-    const divStyle = { paddingTop: '15px' };
     return (
         <Segment inverted vertical>
           <Container textAlign='center'>
