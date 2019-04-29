@@ -11,8 +11,8 @@ const UserCard = ({ name, username, avatarUrl, bio, power }) => (
             <Card.Description>{bio}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-            <Icon name='bolt' color='yellow' />
-            {power}
+            <Icon name='users' />
+            {power} followers
         </Card.Content>
     </Card>
 );

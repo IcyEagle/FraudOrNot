@@ -3,9 +3,9 @@ import {Button, Card, Header, Icon, Image, Segment} from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const QuestionCard = ({ text, imageUrl, voted }) => (
-    <Segment>
-        <Image src={imageUrl} fluid />
-        <Header as='h2'>
+    <Segment className='question-card'>
+        <Image src={imageUrl} centered />
+        <Header as='h2' className='title'>
             <Header.Content>
                 {text}
                 <Header.Subheader>{voted} people voted</Header.Subheader>

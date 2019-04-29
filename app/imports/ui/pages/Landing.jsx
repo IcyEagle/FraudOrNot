@@ -157,14 +157,14 @@ class Landing extends React.Component {
                               <Grid.Column>
                                   <QuestionCard
                                       text='Is Craig Wright fraud or not?'
-                                      imageUrl='https://cdn-images-1.medium.com/max/1200/1*IRtsW33ODZL42DW6pyqY4Q.jpeg'
+                                      imageUrl='/craig.jpg'
                                       voted={523}
                                   />
                               </Grid.Column>
                               <Grid.Column>
                                   <QuestionCard
                                       text='Will BTC hit 7000 in June 2019?'
-                                      imageUrl='https://cryptovest.com/images/thumbs/5bec50b172d4d0000d57040b_700xauto.png'
+                                      imageUrl='/btc_up.jpg'
                                       voted={115}
                                   />
                               </Grid.Column>

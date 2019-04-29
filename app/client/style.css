@@ -102,3 +102,11 @@
 .ui.grid.influencers-list {
     margin-top: 2em;
 }
+
+.ui.segment.question-card .title {
+    min-height: 80px;
+}
+
+.ui.segment.question-card img {
+    height: 327px;
+}
