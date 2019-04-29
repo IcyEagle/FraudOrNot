@@ -8,7 +8,7 @@ class Footer extends React.Component {
     return (
         <Segment inverted vertical>
           <Container textAlign='center'>
-              <p>© Copyright 2019 | VaterMelon. All right reserved.</p>
+              <p>© Copyright 2019 | VoterMelon. All right reserved.</p>
               <p>Powered by <a target='_blank' rel='noopener noreferrer'
                                href='https://github.com/IcyEagle/'>Aleksandr Kuzmenko</a></p>
           </Container>
