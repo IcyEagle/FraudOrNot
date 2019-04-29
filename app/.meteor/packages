@@ -43,3 +43,4 @@ dburles:factory
 
 dburles:collection-helpers
 service-configuration@1.0.11
+server-render

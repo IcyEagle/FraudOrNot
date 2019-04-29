@@ -1,19 +1,22 @@
 import React from 'react';
-import 'semantic-ui-css/semantic.css';
-import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import { createMemoryHistory, createBrowserHistory } from 'history';
+import { Meteor } from 'meteor/meteor';
 import NavBar from '../components/NavBar';
 import ListQuestion from '../pages/ListQuestion';
 import QuestionPage from '../pages/QuestionPage';
 import NotFound from '../pages/NotFound';
 import Landing from '../pages/Landing';
 
+const history = Meteor.isClient ? createBrowserHistory() : createMemoryHistory();
+
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 class App extends React.Component {
   render() {
     return (
-        <Router>
+        <Router history={history}>
           <div>
-            {/*<NavBar/>*/}
+            {/* <NavBar/> */}
             <Switch>
               <Route exact path="/" component={Landing}/>
               <Route exact path="/list" component={ListQuestion}/>
