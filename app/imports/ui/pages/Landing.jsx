@@ -41,21 +41,15 @@ class Landing extends React.Component {
                       <Grid.Column width={8}>
                           <Header as='h3'>How will I protect the newbies?</Header>
                           <p>
-                              You can vote for projects: are they scams or not?
-                              The more people vote for Fraud,
-                              the more probability that others {"won't"} make a mistake.
+                              You can protect newbies by voting for projects (scam or legit).
+                              <br />
+                              The more people downvote the scam projects, the more newbies will be saved.
                           </p>
                           <Header as='h3'>How will I gain followers?</Header>
                           <p>
-                              We are interested in encouraging influencers to vote, {"that's"} why
-                              we ask you to follow a particular influencer on&nbsp;
-                              <a
-                                  target='_blank'
-                                  rel='noopener noreferrer'
-                                  href={this.twitterUrl}
-                                  className='twitter-span'>
-                                  Twitter
-                              </a> too see his decision.
+                              Your votes are only visible to people who follow you.
+                              <br />
+                              Newbies will need to expand their following lists to see consensus.
                           </p>
                       </Grid.Column>
                       <Grid.Column width={6} floated='right' verticalAlign='middle' textAlign='justified'>
