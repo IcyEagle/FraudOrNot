@@ -17,13 +17,14 @@ while getopts "i" opt; do
     esac
 done
 shift $((OPTIND-1))
-[ "${1:-}" = "--" ] && shift
+[[ "${1:-}" = "--" ]] && shift
 
 ENV=$1
 ${BIN_DIR}/merge_settings.sh ${ENV}
 
-if [ $INSTALL == 1 ]; then
-    (cd $APP_DIR && meteor npm install)
+if [[ ${INSTALL} == 1 ]]; then
+    printf "\e[33mInstall NPM packages...\e[m\n"
+    (cd ${APP_DIR} && meteor npm install)
 fi
 
 printf "Launching application for \e[1m$ENV\e[m environment...\n"
