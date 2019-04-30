@@ -1,13 +1,14 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button} from 'semantic-ui-react';
+import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import scrollToElement from 'scroll-to-element';
 import ForkRibbon from '../components/ForkRibbon';
 import UserCard from '../components/UserCard';
 import QuestionCard from '../components/QuestionCard';
 import Footer from '../components/Footer';
+import { Questions } from '/imports/api/question/question';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -20,7 +21,7 @@ class Landing extends React.Component {
     }
 
     render() {
-      const { isAuthenticated } = this.props;
+      const { isAuthenticated, questions, mainQuestion } = this.props;
 
       return <div>
           <Segment inverted vertical textAlign='center' className='masthead'>
@@ -74,7 +75,7 @@ class Landing extends React.Component {
                                   <List.Icon name='question' color='olive' />
                                   <List.Content>
                                       Alice wants to know:
-                                      &nbsp;<a href='#'>Is Craig Wright fraud or not?</a>
+                                      &nbsp;<a href='#'>{mainQuestion ? mainQuestion.text : ''}</a>
                                   </List.Content>
                               </List.Item>
                               <List.Item>
@@ -160,27 +161,9 @@ class Landing extends React.Component {
                       <Grid.Column width={16}>
                           <Header as='h3' id='explore'>Explore</Header>
                           <Grid stackable columns={3} className='influencers-list'>
-                              <Grid.Column>
-                                  <QuestionCard
-                                      text='Is Craig Wright fraud or not?'
-                                      imageUrl='/craig.jpg'
-                                      voted={523}
-                                  />
-                              </Grid.Column>
-                              <Grid.Column>
-                                  <QuestionCard
-                                      text='Will BTC hit 7000 in June 2019?'
-                                      imageUrl='/btc_up.jpg'
-                                      voted={115}
-                                  />
-                              </Grid.Column>
-                              <Grid.Column>
-                                  <QuestionCard
-                                      text='Do you trust John McAfee your funds?'
-                                      imageUrl='https://pixel.nymag.com/imgs/fashion/daily/2018/06/22/22-john-mcafee.w700.h700.jpg'
-                                      voted={404}
-                                  />
-                              </Grid.Column>
+                              {questions.map(({ _id, text, imageUrl, voters }) => <Grid.Column key={_id}>
+                                  <QuestionCard text={text} imageUrl={imageUrl} voted={voters} />
+                              </Grid.Column>)}
                           </Grid>
                       </Grid.Column>
                   </Grid.Row>
@@ -207,13 +190,23 @@ class Landing extends React.Component {
 }
 
 Landing.propTypes = {
+    questions: PropTypes.array.isRequired,
+    // required by nature
+    mainQuestion: PropTypes.object,
     isAuthenticated: PropTypes.bool.isRequired,
+    ready: PropTypes.bool.isRequired,
 };
 
 export default withTracker(() => {
+    const subscriptions = [Meteor.subscribe('questions')];
     const isAuthenticated = Meteor.user() != null;
 
     return {
+        // any sorting criteria to stabilize results
+        questions: Questions.find({}, { sort: { _id: -1 } }).fetch(),
+        // take the main question or any as a fallback
+        mainQuestion: Questions.findOne({ isMain: true }),
+        ready: subscriptions.every(subscription => subscription.ready()),
         isAuthenticated,
     };
 })(Landing);

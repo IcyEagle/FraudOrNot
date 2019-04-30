@@ -18,14 +18,15 @@
   ],
 
   "defaultQuestions": [
-    { "text": "Is the Earth round?", "trueCount": 340023, "truePower": 4500855, "falseCount": 8356, "falsePower": 45562 },
-    { "text": "Do dinosaurs still exist?", "trueCount": 4778, "truePower": 300855, "falseCount": 3018992, "falsePower": 3345562  }
+    { "text": "Is Craig Wright fraud or not?", "imageUrl": "/craig.jpg", "voters": 432, "isMain": true },
+    { "text": "Will BTC hit 7000 in June 2019?", "imageUrl": "/btc_up.jpg", "voters": 213 },
+    { "text": "Do you trust John McAfee your funds?", "imageUrl": "https://pixel.nymag.com/imgs/fashion/daily/2018/06/22/22-john-mcafee.w700.h700.jpg", "voters": 97 }
   ],
 
   "defaultDecisions": [
-    { "text": "Is the Earth round?", "user": "John McAfee", "choice": true, "power": 908775 },
-    { "text": "Do dinosaurs still exist?", "user": "John McAfee", "choice": false, "power": 908822 },
-    { "text": "Do dinosaurs still exist?", "user": "Justin Sun", "choice": false, "power": 1209230 }
+    { "text": "Is Craig Wright fraud or not?", "user": "John McAfee", "choice": true, "power": 908775 },
+    { "text": "Will BTC hit 7000 in June 2019?", "user": "John McAfee", "choice": false, "power": 908822 },
+    { "text": "Will BTC hit 7000 in June 2019?", "user": "Justin Sun", "choice": false, "power": 1209230 }
   ],
   "public": {
     "applicationName": "VoterMelon",

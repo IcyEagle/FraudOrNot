@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, Card, Header, Icon, Image, Segment} from 'semantic-ui-react';
+import { Button, Header, Image, Segment } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
 const QuestionCard = ({ text, imageUrl, voted }) => (
