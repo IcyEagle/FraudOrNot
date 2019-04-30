@@ -1,10 +1,13 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button, Card } from 'semantic-ui-react';
+import { withTracker } from 'meteor/react-meteor-data';
+import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button} from 'semantic-ui-react';
+import PropTypes from 'prop-types';
+import scrollToElement from 'scroll-to-element';
 import ForkRibbon from '../components/ForkRibbon';
 import UserCard from '../components/UserCard';
-import QuestionCard from "../components/QuestionCard";
-import Footer from "../components/Footer";
+import QuestionCard from '../components/QuestionCard';
+import Footer from '../components/Footer';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -13,9 +16,12 @@ class Landing extends React.Component {
 
         this.githubUrl = Meteor.settings.public.githubUrl;
         this.twitterUrl = Meteor.settings.public.twitterUrl;
+        this.onExploreClick = this.onExploreClick.bind(this);
     }
 
     render() {
+      const { isAuthenticated } = this.props;
+
       return <div>
           <Segment inverted vertical textAlign='center' className='masthead'>
               <Container text>
@@ -29,10 +35,10 @@ class Landing extends React.Component {
                           <span className='melon-span'>Melon</span>
                       </i>
                   </Header>
-                  <Button primary size='huge' onClick={this.onSignUp}>
+                  {isAuthenticated ? this.renderExploreButton() : <Button primary size='huge' onClick={this.onSignUp}>
                       Sign up with
                       <Icon name='twitter' className='right' />
-                  </Button>
+                  </Button> }
               </Container>
           </Segment>
           <Segment vertical className='stripe'>
@@ -100,10 +106,10 @@ class Landing extends React.Component {
                               </List.Item>
                           </List>
                           <div className='sign-in-row'>
-                              <Button primary size='huge' onClick={this.onSignUp}>
+                              {isAuthenticated ? this.renderExploreButton() : <Button primary size='huge' onClick={this.onSignUp}>
                                   Try it with
                                   <Icon name='twitter' className='right' />
-                              </Button>
+                              </Button>}
                           </div>
                       </Grid.Column>
                   </Grid.Row>
@@ -138,21 +144,21 @@ class Landing extends React.Component {
                                       power={7651132}
                                   />
                               </Grid.Column>
-                              {/*<Grid.Column>*/}
-                                  {/*<UserCard*/}
-                                      {/*name='CryptoPanic HQ'*/}
-                                      {/*username='CryptoPanicHQ'*/}
-                                      {/*bio='This is official http://CryptoPanic.com  announcements channel. Follow @CryptoPanicCom for trending news!'*/}
-                                      {/*avatarUrl='https://pbs.twimg.com/profile_images/1033478926490914818/t02Q6ozB_400x400.jpg'*/}
-                                      {/*power={876552}*/}
-                                  {/*/>*/}
-                              {/*</Grid.Column>*/}
+                              {/* <Grid.Column> */}
+                                  {/* <UserCard */}
+                                      {/* name='CryptoPanic HQ' */}
+                                      {/* username='CryptoPanicHQ' */}
+                                      {/* bio='This is official http://CryptoPanic.com  announcements channel. Follow @CryptoPanicCom for trending news!' */}
+                                      {/* avatarUrl='https://pbs.twimg.com/profile_images/1033478926490914818/t02Q6ozB_400x400.jpg' */}
+                                      {/* power={876552} */}
+                                  {/* /> */}
+                              {/* </Grid.Column> */}
                           </Grid>
                       </Grid.Column>
                   </Grid.Row>
                   <Grid.Row>
                       <Grid.Column width={16}>
-                          <Header as='h3'>Explore</Header>
+                          <Header as='h3' id='explore'>Explore</Header>
                           <Grid stackable columns={3} className='influencers-list'>
                               <Grid.Column>
                                   <QuestionCard
@@ -184,9 +190,30 @@ class Landing extends React.Component {
           <ForkRibbon url={this.githubUrl}/>
       </div>;
   }
+
   onSignUp() {
       Meteor.loginWithTwitter();
   }
+
+  renderExploreButton() {
+    return <Button primary size='huge' onClick={this.onExploreClick}>
+        Explore
+    </Button>;
+  }
+
+  onExploreClick() {
+      scrollToElement('#explore');
+  }
 }
 
-export default Landing;
+Landing.propTypes = {
+    isAuthenticated: PropTypes.bool.isRequired,
+};
+
+export default withTracker(() => {
+    const isAuthenticated = Meteor.user() != null;
+
+    return {
+        isAuthenticated,
+    };
+})(Landing);

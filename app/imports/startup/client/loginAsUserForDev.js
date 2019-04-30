@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 
-Meteor.loginAsUser = function (userId, callback = () => {}) {
+Meteor.loginAsUser = function (userId, userCallback = () => {}) {
     const loginRequest = { userId };
 
     Accounts.callLoginMethod({
         methodArguments: [loginRequest],
-        userCallback: callback,
+        userCallback,
     });
 };

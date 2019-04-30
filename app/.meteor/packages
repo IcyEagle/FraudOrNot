@@ -33,9 +33,6 @@ ejson@1.1.0                            # https://docs.meteor.com/api/ejson.html
 alanning:roles                   # https://github.com/alanning/meteor-roles
 accounts-twitter@1.4.2
 
-# Prototyping only
-insecure@1.0.7                         # Enable client-side manipulation of Mongo collections.
-
 # testing
 meteortesting:mocha
 xolvio:cleaner
@@ -43,4 +40,4 @@ dburles:factory
 
 dburles:collection-helpers
 service-configuration@1.0.11
-server-render
+communitypackages:react-router-ssr
