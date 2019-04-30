@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { onPageLoad } from 'meteor/server-render';
 
-// load styles separately from App.jsx because of SSR
-import 'semantic-ui-css/semantic.css';
+// bypass issue https://github.com/meteor/meteor/issues/9758
+// /client/semantic.min.css added with modified asset path
+// (/themes/default/assets/ instead of themes/default/assets/)
+// import 'semantic-ui-css/semantic.css';
 
 // load login bypass for development purpose
 import './loginAsUserForDev';
