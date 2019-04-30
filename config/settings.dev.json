@@ -24,9 +24,9 @@
   ],
 
   "defaultDecisions": [
-    { "text": "Is Craig Wright fraud or not?", "user": "John McAfee", "choice": true, "power": 908775 },
-    { "text": "Will BTC hit 7000 in June 2019?", "user": "John McAfee", "choice": false, "power": 908822 },
-    { "text": "Will BTC hit 7000 in June 2019?", "user": "Justin Sun", "choice": false, "power": 1209230 }
+    { "text": "Is Craig Wright fraud or not?", "user": "John McAfee", "choice": true, "power": 910775 },
+    { "text": "Will BTC hit 7000 in June 2019?", "user": "John McAfee", "choice": false, "power": 1827 },
+    { "text": "Will BTC hit 7000 in June 2019?", "user": "Justin Sun", "choice": false, "power": 21465 }
   ],
   "public": {
     "applicationName": "VoterMelon",
