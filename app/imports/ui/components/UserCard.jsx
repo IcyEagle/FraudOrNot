@@ -2,6 +2,16 @@ import React from 'react';
 import { Card, Icon, Image } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
+function roundPower(power) {
+    if (power >= 1000000) {
+        return `${(power / 1000000).toFixed(2)}M`;
+    } if (power >= 1000) {
+        return `${(power / 1000).toFixed(1)}K`;
+    }
+        return power;
+
+}
+
 const UserCard = ({ name, username, avatarUrl, bio, power }) => (
     <Card fluid className='user-card'>
         <Card.Content>
@@ -12,7 +22,7 @@ const UserCard = ({ name, username, avatarUrl, bio, power }) => (
         </Card.Content>
         <Card.Content extra>
             <Icon name='users' />
-            {power} followers
+            {roundPower(power)} followers
         </Card.Content>
     </Card>
 );
