@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import scrollToElement from 'scroll-to-element';
@@ -180,7 +180,7 @@ export default withTracker(() => {
         questions: Questions.find({}, { sort: { _id: -1 } }).fetch(),
         users: Users.find({}, { sort: { 'profile.power': -1 }, limit: 3 }).fetch(),
         // take the main question or any as a fallback
-        mainQuestion: Questions.findOne({ isMain: true }),
+        mainQuestion: Questions.findOne({ isMain: true }) || Questions.findOne({}),
         ready: subscriptions.every(subscription => subscription.ready()),
         isAuthenticated,
     };
