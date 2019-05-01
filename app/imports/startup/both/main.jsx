@@ -11,5 +11,6 @@ renderWithSSR(<App />);
 if (Meteor.isServer) {
     FastRender.route('/', function () {
         this.subscribe('questions');
+        this.subscribe('users.top');
     });
 }

@@ -1,5 +1,5 @@
 import './serviceConfiguration';
 import './loginAsUserForDev';
-import './accounts';
+import './users';
 import './questions';
 import './decisions';

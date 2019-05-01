@@ -8,13 +8,64 @@
   },
   "defaultVotePower": 1,
   "defaultUsers": [
-    { "name": "John McAfee", "externalId": 1000001, "power":  909236, "friends": [1000002, 1000003] },
-    { "name": "Justin Sun", "externalId": 1000002, "power":  1209236, "friends": [1000001] },
-    { "name": "CZ Binance", "externalId": 1000003, "power":  909236 },
-    { "name": "Tuur Demeester", "externalId": 1000004, "power":  909236 },
-    { "name": "Vitalik Non-giver of Ether", "externalId": 1000005, "power": 849432 },
-    { "name": "CoinDesk", "externalId": 1000006, "power": 789232 },
-    { "name": "Blockchain", "externalId": 1000007, "power": 744001 }
+    {
+      "name": "John McAfee",
+      "username": "officialmcafee",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1068211396712763392/7FxhjlR3_400x400.jpg",
+      "bio":  "The power we are seeking to unleash with the 2020 campaign is not the power of John McAfee. It is the power of the individual.",
+      "externalId": 1000001,
+      "power":  910775,
+      "friends": [1000002, 1000003]
+    },
+    {
+      "name": "Justin Sun",
+      "username": "justinsuntron",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1037498944987652097/SdbtPeEs_400x400.jpg",
+      "bio":  "@tronfoundation丨@BitTorrent丨@utorrent丨The First Millennial Graduate of Hupan University Founded By Jack Ma From @alibabagroup #TRON #TRX $TRX #BTT $BTT",
+      "externalId": 1000002,
+      "power": 1110002,
+      "friends": [1000001]
+    },
+    {
+      "name": "CZ Binance",
+      "username": "cz_binance",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1118864185155149824/rC5M1VzB_400x400.png",
+      "bio":  "CEO @Binance",
+      "externalId": 1000003,
+      "power": 334589
+    },
+    {
+      "name": "Tuur Demeester",
+      "username": "TuurDemeester",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1116475316481007618/zQi040l8_400x400.png",
+      "bio":  "Founding Partner Adamant Capital",
+      "externalId": 1000004,
+      "power": 1238
+    },
+    {
+      "name": "Vitalik Non-giver of Ether",
+      "username": "VitalikButerin",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/977496875887558661/L86xyLF4_400x400.jpg",
+      "bio":  "See https://about.me/vitalik_buterin  Not giving away ETH. For inquiries about me advising your ICO, please email: noreply@buterin.com",
+      "externalId": 1000005,
+      "power": 852432
+    },
+    {
+      "name": "CoinDesk",
+      "username": "coindesk",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/875399204218126339/W3zmmuWz_400x400.jpg",
+      "bio":  "The latest news, prices, charts, guides and analysis from the world leader in bitcoin, crypto and blockchain tech.",
+      "externalId": 1000006,
+      "power": 790232
+    },
+    {
+      "name": "Blockchain",
+      "username": "blockchain",
+      "avatarUrl": "https://pbs.twimg.com/profile_images/1030204789978804230/ciDiP1gY_400x400.jpg",
+      "bio":  "Be Your Own Bank. Easiest way to store, trade & invest in crypto. Join the world's most popular crypto wallet, trusted by 35M+ users. For support @AskBlockchain",
+      "externalId": 1000007,
+      "power": 745001
+    }
   ],
 
   "defaultQuestions": [
@@ -25,7 +76,7 @@
 
   "defaultDecisions": [
     { "text": "Is Craig Wright fraud or not?", "user": "John McAfee", "choice": true, "power": 910775 },
-    { "text": "Will BTC hit 7000 in June 2019?", "user": "John McAfee", "choice": false, "power": 1827 },
+    { "text": "Will BTC hit 7000 in June 2019?", "user": "John McAfee", "choice": false, "power": 910775 },
     { "text": "Will BTC hit 7000 in June 2019?", "user": "Justin Sun", "choice": false, "power": 21465 }
   ],
   "public": {

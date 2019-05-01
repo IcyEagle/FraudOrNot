@@ -1,16 +1,18 @@
 import { Meteor } from 'meteor/meteor';
 import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
+import { Users } from '../../api/user/user';
 // import Twitter from "./twitter";
 
 /* eslint-disable no-console */
 
-function createUser({ name, externalId, power, friends }) {
-  console.log(`  Creating user ${name}.`);
+function createUser({ name, username, externalId, power, friends, bio, avatarUrl }) {
+  console.log(`  Creating user ${name} ${username}.`);
   Accounts.createUser({
     externalId,
-    username: name,
-    profile: { name, power, friends: friends || [] },
+    username,
+    power,
+    profile: { name, username, power, bio, avatarUrl, friends: friends || [] },
   });
 }
 
@@ -50,3 +52,7 @@ Accounts.onCreateUser((options, user) => {
 //
 //   return Object.assign({ externalId, twitterData, profile: { name, avatarUrl, power } }, user);
 // });
+
+Meteor.publish('users.top', function () {
+  return Users.find({}, { sort: { 'profile.power': -1 }, limit: 3 });
+});

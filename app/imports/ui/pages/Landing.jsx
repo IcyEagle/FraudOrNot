@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
+import { withRouter, Link } from 'react-router-dom';
 import { Icon, Container, Header, Image, Divider, List, Grid, Segment, Button } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import scrollToElement from 'scroll-to-element';
@@ -9,6 +10,7 @@ import UserCard from '../components/UserCard';
 import QuestionCard from '../components/QuestionCard';
 import Footer from '../components/Footer';
 import { Questions } from '/imports/api/question/question';
+import { Users } from '/imports/api/user/user';
 
 /** A simple static component to render some text for the landing page. */
 class Landing extends React.Component {
@@ -21,7 +23,11 @@ class Landing extends React.Component {
     }
 
     render() {
-      const { isAuthenticated, questions, mainQuestion } = this.props;
+        return this.props.ready ? this.renderPage() : '';
+    }
+
+    renderPage() {
+      const { isAuthenticated, questions, users, mainQuestion } = this.props;
 
       return <div>
           <Segment inverted vertical textAlign='center' className='masthead'>
@@ -75,7 +81,7 @@ class Landing extends React.Component {
                                   <List.Icon name='question' color='olive' />
                                   <List.Content>
                                       Alice wants to know:
-                                      &nbsp;<a href='#'>{mainQuestion ? mainQuestion.text : ''}</a>
+                                      &nbsp;<Link to={`/show/${mainQuestion._id}`}>{mainQuestion.text}</Link>
                                   </List.Content>
                               </List.Item>
                               <List.Item>
@@ -114,55 +120,22 @@ class Landing extends React.Component {
                           </div>
                       </Grid.Column>
                   </Grid.Row>
-                  <Grid.Row>
+                  {users.length >= 3 ? <Grid.Row>
                       <Grid.Column width={16}>
                           <Header as='h3'>Who has already signed up?</Header>
                           <Grid stackable columns={3} className='influencers-list'>
-                              <Grid.Column>
-                                  <UserCard
-                                      name='John McAfee'
-                                      username='officialmcafee'
-                                      bio='The power we are seeking to unleash with the 2020 campaign is not the power of John McAfee. It is the power of the individual.'
-                                      avatarUrl='https://pbs.twimg.com/profile_images/1068211396712763392/7FxhjlR3_400x400.jpg'
-                                      power={14453232}
-                                  />
-                              </Grid.Column>
-                              <Grid.Column>
-                                  <UserCard
-                                      name='James Bang'
-                                      username='PRHacks'
-                                      bio='Using Blockchain to solve real world problems. Cryptocurrency investor & market maker for exchanges and tokens. CEO of Zeo Fund & COO of ICOiN Studios.'
-                                      avatarUrl='https://pbs.twimg.com/profile_images/1032108604378112001/duH5lAY7_400x400.jpg'
-                                      power={45600787}
-                                  />
-                              </Grid.Column>
-                              <Grid.Column>
-                                  <UserCard
-                                      name='Tyler Jenks'
-                                      username='LucidInvestment'
-                                      bio='President of Lucid Investment with over 40 years experience in financial markets. Devoted to analyzing Bitcoin and Cryptos. Host of Hyperwave Web Series.'
-                                      avatarUrl='https://pbs.twimg.com/profile_images/1003982000796110849/Io557AVG_400x400.jpg'
-                                      power={7651132}
-                                  />
-                              </Grid.Column>
-                              {/* <Grid.Column> */}
-                                  {/* <UserCard */}
-                                      {/* name='CryptoPanic HQ' */}
-                                      {/* username='CryptoPanicHQ' */}
-                                      {/* bio='This is official http://CryptoPanic.com  announcements channel. Follow @CryptoPanicCom for trending news!' */}
-                                      {/* avatarUrl='https://pbs.twimg.com/profile_images/1033478926490914818/t02Q6ozB_400x400.jpg' */}
-                                      {/* power={876552} */}
-                                  {/* /> */}
-                              {/* </Grid.Column> */}
+                              {users.map(({ _id, profile }) => <Grid.Column key={_id}>
+                                  <UserCard {...profile} />
+                              </Grid.Column>)}
                           </Grid>
                       </Grid.Column>
-                  </Grid.Row>
+                  </Grid.Row> : ''}
                   <Grid.Row>
                       <Grid.Column width={16}>
                           <Header as='h3' id='explore'>Explore</Header>
                           <Grid stackable columns={3} className='influencers-list'>
-                              {questions.map(({ _id, text, imageUrl, voters }) => <Grid.Column key={_id}>
-                                  <QuestionCard text={text} imageUrl={imageUrl} voted={voters} />
+                              {questions.map(({ _id: id, text, imageUrl, voters }) => <Grid.Column key={id}>
+                                  <QuestionCard id={id} text={text} imageUrl={imageUrl} voted={voters} />
                               </Grid.Column>)}
                           </Grid>
                       </Grid.Column>
@@ -191,6 +164,7 @@ class Landing extends React.Component {
 
 Landing.propTypes = {
     questions: PropTypes.array.isRequired,
+    users: PropTypes.array.isRequired,
     // required by nature
     mainQuestion: PropTypes.object,
     isAuthenticated: PropTypes.bool.isRequired,
@@ -198,12 +172,13 @@ Landing.propTypes = {
 };
 
 export default withTracker(() => {
-    const subscriptions = [Meteor.subscribe('questions')];
+    const subscriptions = [Meteor.subscribe('questions'), Meteor.subscribe('users.top')];
     const isAuthenticated = Meteor.user() != null;
 
     return {
         // any sorting criteria to stabilize results
         questions: Questions.find({}, { sort: { _id: -1 } }).fetch(),
+        users: Users.find({}, { sort: { 'profile.power': -1 }, limit: 3 }).fetch(),
         // take the main question or any as a fallback
         mainQuestion: Questions.findOne({ isMain: true }),
         ready: subscriptions.every(subscription => subscription.ready()),
