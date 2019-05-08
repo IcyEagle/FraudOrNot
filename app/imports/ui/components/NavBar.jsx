@@ -89,8 +89,10 @@ const NavBarContainer = withTracker(() => ({
   power: Meteor.user() ? Meteor.user().profile.power.toString() : '',
   avatar: Meteor.user() ? Meteor.user().profile.avatarUrl : '',
   title: Meteor.settings.public.applicationName,
-  onLogin: Meteor.loginWithTwitter,
-  onLogout: Meteor.logout,
+  // empty function for SSR support (Meteor.logout doesn't exist on server side)
+  onLogin: Meteor.loginWithTwitter || (() => {}),
+  // empty function for SSR support (Meteor.logout doesn't exist on server side)
+  onLogout: Meteor.logout || (() => {}),
 }))(NavBar);
 
 /** Enable ReactRouter for this component. https://reacttraining.com/react-router/web/api/withRouter */

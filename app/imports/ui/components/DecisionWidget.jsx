@@ -18,11 +18,11 @@ class DecisionWidget extends React.Component {
         const { onSubmit, negativeLabel, positiveLabel } = this.props;
 
         return <Button.Group size='massive' fluid>
-            <Button onClick={() => onSubmit(false)} negative>
+            <Button onClick={() => onSubmit(false)} className='brand-red-background'>
                 <Icon name='thumbs down' />{negativeLabel}
             </Button>
             <Button.Or />
-            <Button onClick={() => onSubmit(true)} positive>
+            <Button onClick={() => onSubmit(true)} className='brand-green-background'>
                 <Icon name='thumbs up' />{positiveLabel}
             </Button>
         </Button.Group>;
@@ -39,7 +39,6 @@ class DecisionWidget extends React.Component {
 
     renderDecisionLabel() {
         const { decision: { choice } } = this.props;
-
         return choice ?
             <div><Icon name='thumbs up' circular color='green' />You voted for Legit</div> :
             <div><Icon name='thumbs down' circular color='red' />You voted for Fraud</div>;

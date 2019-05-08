@@ -9,10 +9,8 @@ import { Users } from '../../api/user/user';
 function createUser({ name, username, externalId, power, friends, bio, avatarUrl }) {
   console.log(`  Creating user ${name} ${username}.`);
   Accounts.createUser({
-    externalId,
     username,
-    power,
-    profile: { name, username, power, bio, avatarUrl, friends: friends || [] },
+    profile: { name, externalId, username, power, bio, avatarUrl, friends: friends || [] },
   });
 }
 

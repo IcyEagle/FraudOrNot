@@ -13,4 +13,10 @@ if (Meteor.isServer) {
         this.subscribe('questions');
         this.subscribe('users.top');
     });
+    FastRender.route('/show/:id', function ({ id }) {
+        this.subscribe('decisions.self', id);
+        this.subscribe('decisions.friends', id);
+        this.subscribe('question.id', id);
+        this.subscribe('decisions.others', id);
+    });
 }

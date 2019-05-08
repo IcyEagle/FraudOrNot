@@ -11,6 +11,10 @@ const DecisionsSchema = new SimpleSchema({
   questionId: String,
   choice: Boolean,
   power: SimpleSchema.Integer,
+  externalId: String,
+  name: String,
+  username: String,
+  avatarUrl: String,
 }, { tracker: Tracker });
 
 /** Attach this schema to the collection. */

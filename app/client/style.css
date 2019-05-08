@@ -41,6 +41,14 @@
     color: rgb(246, 83, 40)
 }
 
+.brand-red-background {
+    background-color: rgb(246, 83, 40) !important
+}
+
+.brand-green-background {
+    background-color: rgb(140, 190, 68) !important
+}
+
 .melon-span {
     color: rgb(140, 190, 68)
 }
@@ -109,4 +117,32 @@
 
 .ui.segment.question-card img {
     height: 327px;
+}
+
+.ui.header.question-text {
+    margin-top: 0.4em;
+    margin-bottom: 0.4em;
+    font-size: 4em;
+    font-weight: normal;
+}
+
+.scam-header {
+    color: rgb(246, 83, 40) !important;
+}
+
+.legit-header {
+    color: rgb(140, 190, 68) !important;
+}
+
+.scam-text-color {
+    color: rgb(246, 83, 40) !important;
+}
+
+.legit-text-color {
+    color: rgb(140, 190, 68) !important;
+}
+
+.ui.grid.decision-grid {
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
